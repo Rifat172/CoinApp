@@ -33,9 +33,7 @@ namespace CoinApp.Controllers
                     IsRegistred = user.Equals(u);
                 }
             }
-
-
-            return RedirectToAction("CryptocurrencyQuotes", "Home", user);
+            return RedirectToAction("CryptocurrencyQuotes");
         }
 
         public ActionResult SignUp()
@@ -43,7 +41,7 @@ namespace CoinApp.Controllers
             return View();
         }
 
-        public ActionResult CryptocurrencyQuotes(User user)
+        public ActionResult CryptocurrencyQuotes()
         {
             return View();
         }
