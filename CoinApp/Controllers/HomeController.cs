@@ -24,28 +24,63 @@ namespace CoinApp.Controllers
         [HttpPost]
         public ActionResult SignIn(User user)
         {
-            bool IsRegistred = false;
             using (UserContext db = new UserContext())
             {
                 DbSet<User> users = db.Users;
-                foreach(var u in users)
+                foreach (User u in users)
                 {
-                    IsRegistred = user.Equals(u);
+                    if (user.Equals(u))
+                    {
+                        user.Id = u.Id;
+                        break;
+                    }
                 }
             }
-
-
-            return RedirectToAction("CryptocurrencyQuotes", "Home", user);
+            return RedirectToAction("CryptocurrencyQuotes", new { user.Id });
         }
 
-        public ActionResult SignUp()
+        public ActionResult SignUp(string message)
         {
             return View();
         }
-
-        public ActionResult CryptocurrencyQuotes(User user)
+        [HttpPost]
+        public ActionResult SignUp(string Email, string Password, string Password1)
         {
-            return View();
+            if (HelperRegex.IsCorrectlyEmail(Email))
+            {
+                if (Password == Password1)
+                {
+                    if (HelperRegex.IsCorrectlyPassword(Password))
+                    {
+                        using (UserContext db = new UserContext())
+                        {
+                            DbSet<User> users = db.Users;
+
+                            foreach (var u in users)
+                            {
+                                if (Email == HelperRegex.RemoveSpace(u.Email))
+                                    return RedirectToAction("SignUp", new { message = "Регистрация не прошла" });
+                            }
+                            db.Users.Add(new User { Email = Email, Password = Password });
+                            db.SaveChanges();
+                        }
+                        return RedirectToAction("SignIn");
+                    }
+                }
+            }
+            return RedirectToAction("SignUp", new { message = "Регистрация не прошла" });
+        }
+
+        public ActionResult CryptocurrencyQuotes(int Id)
+        {
+            if (Id == 0)
+            {
+                return RedirectToAction("SignIn");
+            }
+            else
+            {
+                return View();
+            }
         }
     }
 }

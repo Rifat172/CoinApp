@@ -13,15 +13,19 @@ namespace CoinApp.Models
 
         public override bool Equals(object obj)
         {
-            if (this.Email == HelperRegex.ReplaceSpace(((User)obj).Email) &&
-                this.Password == HelperRegex.ReplaceSpace(((User)obj).Password))
-            {
+            if (Email == HelperRegex.RemoveSpace(((User)obj).Email) &&
+                Password == HelperRegex.RemoveSpace(((User)obj).Password))
                 return true;
-            }
-            else
-            {
-                return false;
-            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = -190816841;
+            hashCode = hashCode * -1521134295 + Id.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Email);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Password);
+            return hashCode;
         }
     }
 }
