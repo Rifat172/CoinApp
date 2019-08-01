@@ -49,11 +49,6 @@ namespace CustomRoleProviderApp.Controllers
                     ModelState.AddModelError("", "Некорретно введен Email");
                     return View(model);
                 }
-                if (!HelperRegex.IsCorrectlyPassword(model.Password))
-                {
-                    ModelState.AddModelError("", "Пароль не должен содержать знак пробела");
-                    return View(model);
-                }
                 User user = db.Users.FirstOrDefault(u => u.Email == model.Email && u.Password == model.Password);
 
 

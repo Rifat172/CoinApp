@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using CoinApp.Models.CoinData;
 using System.Web.Mvc;
 
 namespace CoinApp.Controllers
@@ -11,6 +8,9 @@ namespace CoinApp.Controllers
     {
         public ActionResult CryptocurrencyQuotes()
         {
+            Cryptocurrency Cryptocurrencies = CallApi.GetObj();
+            Data[] Data = Cryptocurrencies.Data;
+            ViewBag.Data = Data;
             return View();
         }
     }

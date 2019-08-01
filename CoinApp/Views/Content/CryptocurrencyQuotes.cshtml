@@ -1,6 +1,33 @@
-﻿
+﻿@using CoinApp.Models.CoinData;
 @{
     ViewBag.Title = "CryptocurrencyQuotes";
 }
 
-<h2>CryptocurrencyQuotes</h2>
+<table>
+    <tr>
+        <td>Id </td>
+        <td>Название </td>
+        <td>Символ </td>
+        <td>Логотип </td>
+        <td>Цена в USD </td>
+        <td>Процент изменения цены за 1 час </td>
+        <td>Процент изменения цены за 24 часа </td>
+        <td>Капитализации в USD </td>
+        <td>Время обновления данных </td>
+    </tr>
+    @foreach (Data obj in ViewBag.Data)
+    {
+        <tr>
+
+            <td>@obj.Id</td>
+            <td>@obj.Name</td>
+            <td>@obj.Symbol</td>
+            <td>@obj.Slug</td>
+            <td>@obj.Quote.Usd.Price</td>
+            <td>@obj.Quote.Usd.Percent_change_1h</td>
+            <td>@obj.Quote.Usd.Percent_change_24h</td>
+            <td>@obj.Quote.Usd.Market_cap</td>
+            <Td>@obj.Quote.Usd.Last_updated</Td>
+        </tr>
+    }
+</table>
