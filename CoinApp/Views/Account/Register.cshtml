@@ -4,7 +4,15 @@
 }
 
 <form method="post" action="">
+    @Html.AntiForgeryToken()
     <table>
+        <tr>
+            <td></td>
+            <td>
+                @Html.ValidationSummary()
+            </td>
+        </tr>
+
         <tr>
             <td><p>Введите Email </p></td>
             <td><input type="text" name="Email" id="index_email" style="width: 220px;"></td>
@@ -15,7 +23,7 @@
         </tr>
         <tr>
             <td><p>Подтвердите Пароль </p></td>
-            <td><input id="password" name="Password1" type="password" style="width: 220px;" /></td>
+            <td><input id="password" name="ConfirmPassword" type="password" style="width: 220px;" /></td>
         </tr>
         <tr>
             <td><input id="Submit1" type="submit" value="Зарегистрироваться" /></td>

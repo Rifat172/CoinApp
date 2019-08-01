@@ -10,15 +10,9 @@ namespace CoinApp.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Main()
+        public ActionResult Index()
         {
             return View();
         }
-
-        
-
-        
-
-       
     }
 }
