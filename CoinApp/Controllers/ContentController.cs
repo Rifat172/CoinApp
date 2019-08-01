@@ -2,23 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using CoinApp.Models;
 using System.Web.Mvc;
-using System.Data.Entity;
 
 namespace CoinApp.Controllers
 {
-    public class HomeController : Controller
+    public class ContentController : Controller
     {
-        public ActionResult Main()
+        public ActionResult CryptocurrencyQuotes()
         {
             return View();
         }
-
-        
-
-        
-
-       
     }
 }
