@@ -3,23 +3,21 @@
     ViewBag.Title = "CryptocurrencyQuotes";
 }
 
-<table>
+<table style="width:inherit">
     <tr>
-        <td>Id </td>
-        <td>Название </td>
-        <td>Символ </td>
-        <td>Логотип </td>
-        <td>Цена в USD </td>
-        <td>Процент изменения цены за 1 час </td>
-        <td>Процент изменения цены за 24 часа </td>
-        <td>Капитализации в USD </td>
-        <td>Время обновления данных </td>
+        <td><a href="CryptocurrencyQuotes?value=0">Название</a>                               </td>
+        <td><a href="CryptocurrencyQuotes?value=1">Символ</a>                               </td>
+        <td><a href="CryptocurrencyQuotes?value=2">Логотип</a>                               </td>
+        <td><a href="CryptocurrencyQuotes?value=3">Цена в USD</a>                               </td>
+        <td><a href="CryptocurrencyQuotes?value=4">Изменения цены<br />за 1 час</a>                               </td>
+        <td><a href="CryptocurrencyQuotes?value=5">Изменения цены<br />за 24 часа</a>                               </td>
+        <td><a href="CryptocurrencyQuotes?value=6">Капитализации<br />USD</a>                               </td>
+        <td><a href="CryptocurrencyQuotes?value=7">Время обновления данных</a>                               </td>
+        <td><a href="CryptocurrencyQuotes?value=8">Обновить данные</a>                               </td>
     </tr>
     @foreach (Data obj in ViewBag.Data)
     {
         <tr>
-
-            <td>@obj.Id</td>
             <td>@obj.Name</td>
             <td>@obj.Symbol</td>
             <td>@obj.Slug</td>

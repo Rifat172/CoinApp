@@ -1,16 +1,15 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace CoinApp.Models.CoinData
 {
     public class Cryptocurrency
     {
         [JsonProperty("data")]
-        public Data[] Data { get; set; }
+        public List<Data> Data { get; set; }
     }
     public class Data
     {
-        [JsonProperty("id")]
-        public int Id { get; set; }
         [JsonProperty("name")]
         public string Name { get; set; }
         [JsonProperty("symbol")]

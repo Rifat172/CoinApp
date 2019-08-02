@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Net;
 using System.Web;
@@ -8,20 +9,18 @@ namespace CoinApp.Models.CoinData
 {
     public static class CallApi
     {
-        public static Cryptocurrency GetObj()
+        public static List<Data> GetObj(string Json)
         {
-            string Json = makeAPICall();
-            Cryptocurrency obj = JsonConvert.DeserializeObject<Cryptocurrency>(Json);
-            return obj;
+            return JsonConvert.DeserializeObject<Cryptocurrency>(Json).Data;
         }
-        public static string makeAPICall()
+        public static string MakeAPICall(int limit)
         {
             string API_KEY = "b7e6263a-5a21-471c-abaa-f9b1da3262ab";
             UriBuilder URL = new UriBuilder("https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest");
 
             NameValueCollection queryString = HttpUtility.ParseQueryString(string.Empty);
             queryString["start"] = "1";
-            queryString["limit"] = "5000";
+            queryString["limit"] = limit.ToString();
             queryString["convert"] = "USD";
 
             URL.Query = queryString.ToString();
