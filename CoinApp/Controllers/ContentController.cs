@@ -14,7 +14,11 @@ namespace CoinApp.Controllers
             ViewBag.Data = data;
             if (value != null)
             {
-                int valueb = Convert.ToInt32(value);
+                int valueb = 0;
+                if(!int.TryParse(value,out valueb))
+                {
+                    valueb = -1;
+                }
 
                 switch (valueb)
                 {
