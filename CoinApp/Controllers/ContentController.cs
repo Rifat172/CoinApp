@@ -1,19 +1,22 @@
 ﻿using CoinApp.Models.CoinData;
 using System.Web.Mvc;
 using System.Linq;
+using System;
 
 namespace CoinApp.Controllers
 {
     [Authorize(Roles = "admin,user")]
     public class ContentController : Controller
     {
-        public ActionResult CryptocurrencyQuotes(byte? value)
+        public ActionResult CryptocurrencyQuotes(string value)
         {
             var data = CallApi.GetObj(CallApi.MakeAPICall(50));
             ViewBag.Data = data;
             if (value != null)
             {
-                switch (value)
+                int valueb = Convert.ToInt32(value);
+
+                switch (valueb)
                 {
                     case 0:
                         ViewBag.Data = data.OrderBy(o => o.Name);
